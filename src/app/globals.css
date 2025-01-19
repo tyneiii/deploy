@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'OldEnglishGothicPixel';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url('/fonts/OldEnglishGothicPixelRegular-ow2Bo.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Terminal';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url('/fonts/VT323/VT323-Regular.ttf') format('truetype');
+  }
+}
+
+:root {
+  cursor: url('/img/cursor/mouse.png'), auto;
+}
+
+html,
+body {
+  background-color: black;
+}
+
+a, button, [role="button"] {
+  cursor: url('/img/cursor/select.png'), pointer;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.fade-in-out {
+  animation: fadeInOut 3s infinite;
+}
+
+.logo {
+  fill: #1d1d1b;
+  font-family: 'OldEnglishGothicPixel';
+  font-size: 56.16px;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  stroke-width: 0.5px;
+}
+
+.text-shadow-black {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+.text-shadow-white {
+  text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+}
+
+.text-shadow-white-2 {
+  text-shadow: 0.5px 0.5px 0 #ffffff, -0.5px -0.5px 0 #ffffff, 0.5px -0.5px 0 #ffffff, -0.5px 0.5px 0 #ffffff;
+}
