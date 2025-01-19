@@ -1,0 +1,43 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main # Chạy khi có thay đổi được push lên nhánh main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code từ GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Cài đặt Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Bạn có thể thay bằng phiên bản Node.js phù hợp
+
+      # Cài đặt các dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build ứng dụng Next.js
+      - name: Build Next.js
+        run: npm run build
+
+      # Export ứng dụng thành static files
+      - name: Export Next.js to static files
+        run: npm run export
+
+      # Upload các file build lên cPanel qua FTP
+      - name: Deploy to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+        with:
+          server: ftp://your-cpanel-server.com # Địa chỉ server FTP của bạn
+          username: ${{ secrets.FTP_USERNAME }} # Tên đăng nhập FTP
+          password: ${{ secrets.FTP_PASSWORD }} # Mật khẩu FTP
+          local-dir: out # Thư mục output chứa các file build (do `npm run export` tạo)
+          server-dir: /public_html # Thư mục trên server cPanel
